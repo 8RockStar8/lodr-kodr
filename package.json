@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "crypto": "^1.0.1",
     "express": "^4.16.2",
-    "mongoose": "^4.13.4"
+    "keygenerator": "^1.0.4",
+    "mongoose": "^4.13.6"
   }
 }

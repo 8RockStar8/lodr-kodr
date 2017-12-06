@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const conn = require('./../../core/db-connection');
+const conn = require('./../../core/db_connection');
 const BaseDAO = require('./../../core/base_dao');
 require('./model');
 

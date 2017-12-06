@@ -1,20 +1,30 @@
-mongoose.createConnection(lalalala); //
-
-const BaseDAO = require('./../../core/base_dao');
-
+const mongoose = require('mongoose');
 require('./model');
-let usersCollection = mongoose.model('127.0.0.1:27017/lodrkodrdb');
+const BaseDao = require('./../../core/base_dao');
+const con = require('./../../core/db_connection')
 
-class UsersDAO extends BaseDAO {
+
+
+class UsersDao extends BaseDao {
   constructor() {
-    let usersCollection = mongoose.model('users');
-    super(usersCollection);
+      super(con.model('users'));
   }
-  getData() {
-    usersCollection.find({}).then(users => {
-      return users;
-    }).catch(err => {
-      return err;
-    })
+
+  insertData(query) {
+      if (!query) {
+          return res.send(Utility.generateErrorMessage(
+              Utility.ErrorTypes.INVALID_QUERY)
+          );
+      }
+      con.model('users').findOne({username: query.username}, (err, data) => {
+          if (data) {
+              return res.send(Utility.generateErrorMessage(
+                  Utility.ErrorTypes.INVALID_USERNAME_IDENTIFIER)
+              );
+          }
+      });
+      con.model('users').create(query);
   }
 }
+
+module.exports = new UsersDao();

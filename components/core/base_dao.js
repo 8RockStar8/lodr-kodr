@@ -1,28 +1,46 @@
+const Utility = require('./../../services/utility');
 
-class BaseDASO {
+class BaseDao {
   constructor(collection) {
     this.collection = collection;
   }
+
   getData(query) {
     if (!this.collection) {
-      throw 'GetOperation: Contract violation';
+        return res.send(Utility.generateErrorMessage(
+          Utility.ErrorTypes.CONTRACT_VIOLATION)
+        );
     }
     query = query || {};
     this.collection.find(query);
   }
+
   insertData(query) {
     if (!query) {
-      throw 'CreateOperation: Invalid query';
+      return res.send(Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY)
+      );
     }
     this.collection.create(query);
   }
-  updateData(query) {
+
+  updateData(id, query) {
     if (!query) {
-      throw 'UpdateOperation: Invalid query'
+      return res.send(Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY)
+      );
     }
-    this.collection.update(query);
+    this.collection.update({_id: id}, {$set: query});
   }
-  deleteData() {
-    
+
+  deleteData(query) {
+    if (!query) {
+      return res.send(Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY)
+      );
+    }
+    this.collection.findOneAndRemove(query);
   }
 }
+
+module.exports = BaseDao;
