@@ -2,8 +2,9 @@ const CodeDAO = require('./private/dao');
 const Utility = require('./../../services/utility');
 
 class CodeService {
-    getCode(query) {
-        return new Promis((resolve, reject) => {
+    getCode(query, options) {
+        return new Promise((resolve, reject) => {
+          options = options || {};
             CodeDAO.getData(query)
                    .populate('author',['name', 'username','role'])
                    .skip(req.query.offset)
@@ -16,7 +17,7 @@ class CodeService {
         });
     }
     insertCode(query) {
-        return new Promis((resolve,reject) => {
+        return new Promise((resolve,reject) => {
             CodeDAO.insertData(query).then(data => {
                 resolve(data);
             }).catch(err => {
@@ -25,7 +26,7 @@ class CodeService {
         });
     }
     updateCode(id,query) {
-        return new Promis((resolve,reject) => {
+        return new Promise((resolve,reject) => {
             CodeDAO.updateData(id,query).then(data => {
                 resolve(data);
             }).catch(err => {
@@ -34,7 +35,7 @@ class CodeService {
         });
     }
     deleteCode(query) {
-        return new Promis((resolve,reject) => {
+        return new Promise((resolve,reject) => {
             CodeDAO.deleteData(query).then(data => {
                 resolve(data);
             }).catch(err => {

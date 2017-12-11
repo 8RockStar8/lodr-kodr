@@ -21,9 +21,9 @@ let codeSchema = Schema({
         default: null
     },
     date: {
-      type: Date,
-      default: Date.now(),
-      index: true
+        type: Date,
+        default: Date.now(),
+        index: true
     }
 });
 module.exports = mongoose.model('codes',codeSchema);

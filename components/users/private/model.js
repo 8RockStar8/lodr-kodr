@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const keygen = require('keygenerator');
+
 const AppConstants = require('./../../../settings/constants');
+const AppSettings = require('./../../../settings/service');
+const UsersSettings = AppSettings.users;
 
 const Schema = mongoose.Schema;
 
@@ -43,8 +46,8 @@ let UsersSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin', 'student', 'mentor'],
-    default: 'user'
+    enum: UsersSettings.role_enum_values,
+    default: UsersSettings.roles.USER
   },
   key: {
     type: String,

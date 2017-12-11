@@ -30,6 +30,7 @@ const ErrorTypes = {
     PERMISSION_DENIED: 'permission_denied',
     USER_CREATION_ERROR: 'user_creation_error',
     CODE_CREATION_ERROR: 'code_creation_error',
+    PHOTO_CREATION_ERROR: 'photo_creation_error',
     CODE_PERMISSION_DENIED: 'code_permission_denied',
     INVALID_USERNAME_RANGE: 'invalid_username_range',
     INVALID_PASSWORD_RANGE: 'invalid_password_range',
@@ -91,6 +92,9 @@ class Utility {
                 break;
             case ErrorTypes.CODE_CREATION_ERROR:
                 error_object.message = 'Failed to create a code.';
+                break;
+            case ErrorTypes.PHOTO_CREATION_ERROR:
+                error_object.message = 'Failed to create a photo.';
                 break;
             case ErrorTypes.INVALID_USERNAME_IDENTIFIER:
                 error_object.message = 'User already exists.';

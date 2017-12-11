@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 require('./model');
 const BaseDao = require('./../../core/base_dao');
-const con = require('./../../core/db_connection')
+const con = require('./../../core/db_connection');
+const Utility = require('./../../../services/utility');
 
 
 
@@ -16,14 +17,18 @@ class UsersDao extends BaseDao {
               Utility.ErrorTypes.INVALID_QUERY)
           );
       }
-      con.model('users').findOne({username: query.username}, (err, data) => {
+      query = query || {};
+      return (con.model('users').findOne({username: query.username}, (err, data) => {
           if (data) {
-              return res.send(Utility.generateErrorMessage(
-                  Utility.ErrorTypes.INVALID_USERNAME_IDENTIFIER)
-              );
+              console.log(Utility.generateErrorMessage(Utility.ErrorTypes.INVALID_USERNAME_IDENTIFIER))
+              return Utility.generateErrorMessage(Utility.ErrorTypes.INVALID_USERNAME_IDENTIFIER);
           }
-      });
-      con.model('users').create(query);
+          if (err) {
+              console.log(err);
+              return err;
+          }
+     }));
+     return con.model('users').create(query);
   }
 }
 

@@ -7,37 +7,37 @@ class BaseDao {
 
   getData(query) {
     if (!this.collection) {
-        return res.send(Utility.generateErrorMessage(
-          Utility.ErrorTypes.CONTRACT_VIOLATION)
-        );
+        return Utility.generateErrorMessage(
+          Utility.ErrorTypes.CONTRACT_VIOLATION);
+
+        console.log('error')
     }
     query = query || {};
-    this.collection.find(query);
+    return this.collection.find(query);
   }
 
   insertData(query) {
     if (!query) {
-      return res.send(Utility.generateErrorMessage(
-        Utility.ErrorTypes.INVALID_QUERY)
-      );
+      return Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY);
     }
     this.collection.create(query);
   }
 
   updateData(id, query) {
     if (!query) {
-      return res.send(Utility.generateErrorMessage(
-        Utility.ErrorTypes.INVALID_QUERY)
-      );
+      return Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY);
+
     }
     this.collection.update({_id: id}, {$set: query});
   }
 
   deleteData(query) {
     if (!query) {
-      return res.send(Utility.generateErrorMessage(
-        Utility.ErrorTypes.INVALID_QUERY)
-      );
+      return Utility.generateErrorMessage(
+        Utility.ErrorTypes.INVALID_QUERY);
+
     }
     this.collection.findOneAndRemove(query);
   }

@@ -8,7 +8,9 @@ CodeRouter.get('/', /*Authorize._auth('user'),*/ (req, res) => {
     if (!req.query.key) {
         return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
     }
-    CodeService.getCode().then(data => {
+    let options = req.query;
+    options.requester = req.user;
+    CodeService.getCode(options).then(data => {
                   return res.send(data);
             });
     });

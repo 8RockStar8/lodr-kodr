@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // TODO: remove unnecessary code
 const bodyparser = require('body-parser');
 
 const api_v1 = require('./controllers/api');
