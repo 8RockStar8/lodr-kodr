@@ -11,9 +11,11 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
     extended: true
 }));
-app.use(Utility.parseQuery);
+//app.use(Utility.parseQuery);
 
 api_v1.initialize(app);
 
 
-app.listen(3005);
+app.listen(3005, function(){
+    console.log("Server is run");
+});

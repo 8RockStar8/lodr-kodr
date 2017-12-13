@@ -7,11 +7,5 @@ module.exports = {
       STUDENT: 'student',
       MENTOR: 'mentor'
     }
-  },
-  photos: {
-
-  },
-  codes: {
-
   }
 };

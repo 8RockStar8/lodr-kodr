@@ -39,7 +39,9 @@ const ErrorTypes = {
 };
 
 class Utility {
-    static parseQuery(req, res, next) {
+    static parseQuery() {
+        console.log("2");
+        return function(req, res, next) {
         req.query.offset = parseInt(req.query.offset);
         if (!isFinite(req.query.offset)) {
             req.query.offset = AppConstants.OFFSET_DEFAULT_VALUE;
@@ -49,8 +51,9 @@ class Utility {
         if (!isFinite(req.query.limit)) {
             req.query.limit = AppConstants.LIMIT_DEFAULT_VALUE;
         }
-        next();
+        return;
     }
+}
 
     static generateErrorMessage(type, options) {
         options = options || {};

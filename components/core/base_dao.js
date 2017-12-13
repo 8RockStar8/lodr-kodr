@@ -21,7 +21,7 @@ class BaseDao {
       return Utility.generateErrorMessage(
         Utility.ErrorTypes.INVALID_QUERY);
     }
-    this.collection.create(query);
+    return this.collection.create(query);
   }
 
   updateData(id, query) {
@@ -30,7 +30,10 @@ class BaseDao {
         Utility.ErrorTypes.INVALID_QUERY);
 
     }
-    this.collection.update({_id: id}, {$set: query});
+return this.collection.update({_id:id}, {$set: query})
+
+    //console.log(user)
+
   }
 
   deleteData(query) {
@@ -39,7 +42,7 @@ class BaseDao {
         Utility.ErrorTypes.INVALID_QUERY);
 
     }
-    this.collection.findOneAndRemove(query);
+    return this.collection.findOneAndRemove(query);
   }
 }
 
