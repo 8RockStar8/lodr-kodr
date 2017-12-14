@@ -30,19 +30,27 @@ class BaseDao {
         Utility.ErrorTypes.INVALID_QUERY);
 
     }
-return this.collection.update({_id:id}, {$set: query})
+    return this.collection.update({_id:id}, {$set: query})
 
     //console.log(user)
 
   }
 
-  deleteData(query) {
-    if (!query) {
+  deleteData(id) {
+    if (!id) {
       return Utility.generateErrorMessage(
         Utility.ErrorTypes.INVALID_QUERY);
 
     }
-    return this.collection.findOneAndRemove(query);
+    console.log(id);
+    this.collection.findByIdAndRemove(id, (err,data) =>{
+        if(err) {
+            console.log(err);
+            return err;
+        }
+        console.log(data)
+        return data;
+    });
   }
 }
 

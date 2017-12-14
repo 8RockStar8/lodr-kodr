@@ -90,6 +90,7 @@ class UsersService {
 
 
      return new Promise((resolve, reject) => {
+         console.log('typeof == ', typeof user.age);
           UsersDao.updateData(id, user).then(data => {
               resolve(data);
           }).catch(err => {
@@ -103,12 +104,14 @@ class UsersService {
   deleteUsers(user) {
     return new Promise((resolve, reject) => {
         UsersDao.deleteData(user).then(user => {
-            if(!user) {
-                return res.send(Utility.generateErrorMessage(
-                  Utility.ErrorTypes.USER_ID_ERROR)
-                );
-            }
-            resolve(UsersResponse.generateResponse(data, options.requester));
+            // if(!user) {
+            //     console.log(1);
+            //     return res.send(Utility.generateErrorMessage(
+            //       Utility.ErrorTypes.USER_ID_ERROR)
+            //     );
+            // }
+            console.log(2);
+            resolve(" is deleted");
         }).catch(err => {
             reject(Utility.generateErrorMessage(
               Utility.ErrorTypes.USER_DELETE_ERROR)

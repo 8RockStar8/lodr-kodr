@@ -24,17 +24,8 @@ class PhotosService {
   //Create operation
   insertPhotos(photo) {
       return new Promise((resolve, reject) => {
-          PhotosDao.insertData({
-                author: photo.author,
-                content_type: photo.content_type,
-                size: photo.size,
-                title: photo.title,
-                image: photo.image,
-                width: photo.width,
-                height: photo.height,
-                path: photo.path
-          }).then(data => {
-              resolve(PhotosResponse.generateResponse(data, options.requester));
+          PhotosDao.insertData(photo).then(data => {
+              resolve(data);
           }).catch(err => {
             reject(Utility.generateErrorMessage(
               Utility.ErrorTypes.PHOTO_CREATION_ERROR)
@@ -44,7 +35,7 @@ class PhotosService {
   }
 
   //Delete operation
-  deleteUsers(photo) {
+  deletePhotos(photo) {
     return new Promise((resolve, reject) => {
         PhotosDao.deleteData(photo).then(data => {
             resolve(PhotosResponse.generateResponse(data, options.requester));
