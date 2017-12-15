@@ -13,6 +13,7 @@ class BaseDao {
         console.log('error')
     }
     query = query || {};
+    console.log("asd")
     return this.collection.find(query);
   }
 
@@ -21,6 +22,7 @@ class BaseDao {
       return Utility.generateErrorMessage(
         Utility.ErrorTypes.INVALID_QUERY);
     }
+    console.log("ayo")
     return this.collection.create(query);
   }
 

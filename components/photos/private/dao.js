@@ -10,7 +10,7 @@ class PhotosDao extends BaseDao {
     super(con.model('photos'));
   }
 
-  deleteData(query) {
+  /*deleteData(query) {
     if (!query) {
       return res.send(Utility.generateErrorMessage(
         Utility.ErrorTypes.INVALID_QUERY)
@@ -29,11 +29,7 @@ class PhotosDao extends BaseDao {
          con.model('photos').findOneAndRemove(query)
 
     })
-  }  
+}/*/
 }
-
-
-
-
 
 module.exports = new PhotosDao();

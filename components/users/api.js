@@ -5,9 +5,9 @@ const UsersRouter = express.Router();
 const UsersService = require('./service');
 const Utility = require('./../../services/utility');
 const UserValidator = require('./../../services/validators/user-validator');
-const auth = require('./../authorization/middlewares');
+const auth = require('./../authorization/user_service');
 
-UsersRouter.get('/',auth._auth('optional'),(req, res) => {
+UsersRouter.get('/',auth._auth('optional'), Utility.parseQuery, (req, res) => {
     // if (!req.query.key) {
     //     return res.send(Utility.generateErrorMessage(
     //       Utility.ErrorTypes.PERMISSION_DENIED)
@@ -36,13 +36,7 @@ UsersRouter.post('/', auth._auth('optional'), (req, res) => {
 });
 
 UsersRouter.put('/:id',/* auth._auth('user'), */(req, res) => {
-    // if (req.user.role != 'admin') {
-    //     if (req.params.id != req.user._id) {
-    //         return res.send(Utility.generateErrorMessage(
-    //             Utility.ErrorTypes.PERMISSION_DENIED)
-    //         );
-    //     }
-    // }
+
     if(req.body.password){
         res.send("If you want to change password make a put request '/api/users/password' ");
     }
