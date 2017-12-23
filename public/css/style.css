@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 body {
   background: #FFF;
@@ -92,11 +92,11 @@ a:hover {
   background: #87949b;
 }
 #sidebar {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
-  height: 100%;
-  width: 300px;
+  height: 70px;;
+  width: 100%;
   background: #1D2127;
   transition-duration: .3s;
   z-index: 5;
@@ -105,128 +105,22 @@ a:hover {
 #sidebar a {
   color: #ABB4BE;
 }
-#sidebar .logo-container {
-  font-weight: 100;
-  font-size: 50px;
-  line-height: 40px;
-  text-align: center;
-  margin: 50px 0;
-  cursor: pointer;
-}
-#sidebar .logo-container .logo {
-  position: relative;
-  top: -6px;
-  font-size: 25px;
-  margin-right: 15px;
-  padding: 10px;
-  border: 2px solid #61C7B3;
-  border-radius: 100px;
-  text-indent: 1px;
-  color: #61C7B3;
-}
-#sidebar .compose-button {
-  border-radius: 100px;
-  padding: 13px 20px;
-  text-align: center;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #61C7B3;
-  border: 2px solid #61C7B3;
-  display: block;
-  margin: 0 50px 30px 50px;
-  cursor: pointer;
-}
-#sidebar .compose-button:hover {
-  color: #ABB4BE;
-  border-color: #ABB4BE;
-}
-#sidebar .menu-segment {
-  padding: 0 50px 0 70px;
-}
 #sidebar .menu-segment ul,
 #sidebar .menu-segment li {
   margin: 0;
   padding: 0;
 }
-#sidebar .menu-segment .ball.pink {
-  border-color: #EA4C89;
-}
-#sidebar .menu-segment .ball.green {
-  border-color: #9AE14F;
-}
-#sidebar .menu-segment .ball.blue {
-  border-color: #1BC3E1;
-}
-#sidebar .menu-segment li.title {
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 10px 0;
-  color: #465162;
-}
-#sidebar .menu-segment li.title .icon {
-  float: right;
-}
-#sidebar .menu-segment li.active a,
-#sidebar .menu-segment li.active a:hover {
-  background: #282d36;
+#sidebar .menu-segment li {
+  float: left;
 }
 #sidebar .menu-segment li a {
+  padding: 24px 26px;
   display: block;
-  margin: 0 -50px 0 -70px;
-  padding: 10px 50px 10px 70px;
-}
-#sidebar .menu-segment li a:hover {
-  background: #21262d;
-}
-#sidebar .menu-segment li .italic-link {
-  margin-left: -30px;
-  font-style: italic;
-  color: #465162;
-}
-#sidebar .menu-segment li .italic-link,
-#sidebar .menu-segment li .italic-link:hover {
-  background: transparent;
-}
-#sidebar .menu-segment li .italic-link:hover {
-  color: #ABB4BE;
-}
-#sidebar .menu-segment .labels li a span,
-#sidebar .menu-segment .chat li a span {
-  display: block;
-  border: 5px solid red;
-  border-radius: 100px;
-  margin-top: 6px;
-}
-#sidebar .menu-segment .labels.labels li a span,
-#sidebar .menu-segment .chat.labels li a span {
-  float: right;
-}
-#sidebar .menu-segment .labels.chat li a span,
-#sidebar .menu-segment .chat.chat li a span {
-  float: left;
-  margin-right: 10px;
-}
-#sidebar .menu-segment .chat li a {
-  padding-left: 50px;
-}
-#sidebar .separator {
-  margin: 30px 35px;
-  height: 1px;
-  background: #2D3138;
-}
-#sidebar .bottom-padding {
-  height: 100px;
-}
-#sidebar > .nano-pane {
-  background: transparent;
-}
-#sidebar > .nano-pane .nano-slider {
-  background: rgba(255, 255, 255, 0.1);
 }
 #main {
   position: fixed;
-  top: 0;
-  left: 300px;
+  top: 70px;
+  left: 0;
   bottom: 0;
   right: 0;
   z-index: 4;
@@ -374,7 +268,7 @@ a:hover {
 }
 #main #main-nano-wrapper {
   position: absolute;
-  top: 214px;
+  top: 100px;
   bottom: 0;
   height: auto;
 }
@@ -388,59 +282,12 @@ a:hover {
   line-height: 50px;
   cursor: default;
   transition-duration: .3s;
-  /*
-			.col-1 {
-				width: 140px;
-				text-align: right;
-				padding-right: 37px;
-				padding-top: 15px;
-
-				.checkbox-wrapper, .icon, .dot {
-					float: right;
-					display: block;
-				}
-
-				.icon {
-					margin-left: 10px;
-					font-size: 20px;
-				}
-
-				.dot {
-					border: 5px solid transparent;
-					border-radius: 100px;
-					margin-right: 24px;
-					margin-top: 5px;
-				}
-			}
-			.col-2 {
-				width: 270px;
-			}
-			.col-3 {
-				position: absolute;
-				top: 0;
-				left: 390px; // Covers previous cols
-				right: 120px;
-
-				.grey {
-					opacity: .7;
-				}
-			}
-			.col-4 {
-				width: 120px;
-				padding-left: 20px;
-				float: right;
-			}
-			*/
 }
 #main .message-list li:hover,
 #main .message-list li.active,
 #main .message-list li.selected {
   background: #EFEFEF;
   transition-duration: .05s;
-}
-#main .message-list li.active,
-#main .message-list li.active:hover {
-  box-shadow: inset 5px 0 0 #61C7B3;
 }
 #main .message-list li.unread {
   font-weight: 600;
@@ -468,15 +315,6 @@ a:hover {
   display: block;
   float: left;
 }
-#main .message-list li .col-1 .dot {
-  border: 4px solid transparent;
-  border-radius: 100px;
-  margin: 22px 26px 0;
-  height: 0;
-  width: 0;
-  line-height: 0;
-  font-size: 0;
-}
 #main .message-list li .col-1 .checkbox-wrapper {
   margin-top: 15px;
   margin-right: 10px;
@@ -493,34 +331,20 @@ a:hover {
   overflow: hidden;
   white-space: nowrap;
 }
-#main .message-list li .col-2 {
-  position: absolute;
-  top: 0;
-  left: 400px;
-  right: 0;
-  bottom: 0;
-}
-#main .message-list li .col-2 .subject,
-#main .message-list li .col-2 .date {
-  position: absolute;
-  top: 0;
-}
-#main .message-list li .col-2 .subject {
-  left: 0;
-  right: 200px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-#main .message-list li .col-2 .date {
-  right: 0;
-  width: 200px;
-  padding-left: 80px;
-}
-#main .load-more-link {
+#main .pagination {
   display: block;
-  text-align: center;
-  margin: 30px 0 100px 0;
+  /* text-align: center; */
+  margin: 80px 0 100px 50px;
+}
+#main .pagination a {
+  color: black;
+  /* float: left; */
+  padding: 8px 16px;
+  text-decoration: none;
+}
+#main .pagination a.active {
+  background-color: #1D2127;
+  color: white;
 }
 #message {
   position: fixed;
@@ -743,9 +567,9 @@ a:hover {
     display: none;
   }
 }
-/**
- * Nano scroll stuff
-*/
+      /**
+       * Nano scroll stuff
+      */
 .nano {
   position: relative;
   width: 100%;
@@ -770,24 +594,6 @@ a:hover {
 .has-scrollbar > .nano-content::-webkit-scrollbar {
   visibility: visible;
 }
-.nano > .nano-pane {
-  background: rgba(117, 117, 117, 0.2);
-  position: absolute;
-  width: 8px;
-  right: 8px;
-  top: 8px;
-  bottom: 8px;
-  visibility: hidden\9;
-  /* Target only IE7 and IE8 with this hack */
-  opacity: .01;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-transition: .3s;
-  -moz-transition: .3s;
-  -o-transition: .3s;
-  transition: .3s;
-}
 .nano > .nano-pane > .nano-slider {
   background: #444;
   background: #C7C7C7;
@@ -811,7 +617,7 @@ a:hover {
 .nano:hover > .nano-pane,
 .nano-pane.active,
 .nano-pane.flashed {
-  visibility: visible\9;
+visibility: visible\9;
   /* Target only IE7 and IE8 with this hack */
   opacity: 0.99;
 }
