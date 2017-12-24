@@ -2,12 +2,12 @@ const express = require('express');
 const CodeRouter = express.Router();
 const Utility = require('./../../services/utility');
 const CodeService = require('./service');
-/*const Authorize = require('./private/middlewares');*/
+const Authorize = require('./../authorization/code_service');
 
-CodeRouter.get('/', /*Authorize._auth('user'),*/ (req, res) => {
-    // if (!req.query.key) {
-    //     return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
-    // }
+CodeRouter.get('/', Authorize._auth('user'), (req, res) => {
+    if (!req.query.key) {
+        return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
+    }
     let options = req.query || {};
     options.requester = req.user;
     CodeService.getCode(options).then(data => {
@@ -16,7 +16,7 @@ CodeRouter.get('/', /*Authorize._auth('user'),*/ (req, res) => {
     });
 
 
-CodeRouter.post('/', /*Authorize._auth('user'),*/ (req, res) => {
+CodeRouter.post('/', Authorize._auth('user'), (req, res) => {
     if (!req.query.key) {
        return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
     }
@@ -31,7 +31,7 @@ CodeRouter.post('/', /*Authorize._auth('user'),*/ (req, res) => {
 });
 
 
-CodeRouter.put('/:id',/*Authorize._auth('user'),*/(req,res) => {
+CodeRouter.put('/:id',Authorize._auth('user'),(req,res) => {
     if (!req.query.key) {
         return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
     }
@@ -46,13 +46,16 @@ CodeRouter.put('/:id',/*Authorize._auth('user'),*/(req,res) => {
 });
 
 
-CodeRouter.delete('/:id',/*Authorize._auth('admin'),*/(req,res) => {
-  let id = req.params.id;
-     if(!id) {
-         return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_ID_ERROR));
+CodeRouter.delete('/:id',Authorize._auth('user'),(req,res) => {
+    let id = req.params.id;
+       if(!id) {
+           return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_ID_ERROR));
+         }
+    CodeService.deleteCode({_id: id}).then(data => {
+       if(!data) {
+           return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.INVALID_DATA));
        }
-     CodeService.deleteCode({_id: id}).then(data => {
-         return res.send(data);
-     });
+       return res.send(data);
+    });
 });
 module.exports = CodeRouter;

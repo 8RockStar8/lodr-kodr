@@ -11,7 +11,7 @@ const base64 = require("./../authorization/photo_service");
 const auth = require('./../authorization/user_service');
 
 // Read operation
-PhotosRouter.get('/', /*auth._auth('user'), */(req, res) => {
+PhotosRouter.get('/', auth._auth('user'), (req, res) => {
 
     PhotosService.getPhotos().then(data => {
         return res.send(data);
@@ -21,7 +21,6 @@ PhotosRouter.get('/', /*auth._auth('user'), */(req, res) => {
 //Create operation
 PhotosRouter.post('/:id', auth._auth('optional'), upload.single('avatar'), (req, res) => {
     if (!req.file) {
-        console.log(req.file)
         return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.NO_FILE));
     }
 
@@ -47,8 +46,8 @@ PhotosRouter.post('/:id', auth._auth('optional'), upload.single('avatar'), (req,
 
 
 //Delete operation
-PhotosRouter.delete('/:id', /*auth._auth('user'),*/ (req, res) => {
-    PhotosService.deletePhotos({_id: req.params.id/*, author: req.user_id*/}).then(data => {
+PhotosRouter.delete('/:id', auth._auth('user'),(req, res) => {
+    PhotosService.deletePhotos({_id: req.params.id, author: req.user_id}).then(data => {
         return res.send(data);
     })
 })

@@ -6,7 +6,7 @@ const AppConstants = require('./../../settings/constants');
 
 class CodeService {
     getCode(query) {
-        query = query || {};
+        query = {author:query.requester} || {};
         return new Promise((resolve, reject) => {
             CodeDAO.getData(query)
                    .populate('author',['name', 'username','role'])

@@ -9,11 +9,8 @@ class BaseDao {
     if (!this.collection) {
         return Utility.generateErrorMessage(
           Utility.ErrorTypes.CONTRACT_VIOLATION);
-
-        console.log('error')
     }
     query = query || {};
-    console.log("asd")
     return this.collection.find(query);
   }
 
@@ -22,7 +19,6 @@ class BaseDao {
       return Utility.generateErrorMessage(
         Utility.ErrorTypes.INVALID_QUERY);
     }
-    console.log("ayo")
     return this.collection.create(query);
   }
 
@@ -33,9 +29,6 @@ class BaseDao {
 
     }
     return this.collection.update({_id:id}, {$set: query})
-
-    //console.log(user)
-
   }
 
   deleteData(id) {
@@ -44,15 +37,7 @@ class BaseDao {
         Utility.ErrorTypes.INVALID_QUERY);
 
     }
-    console.log(id);
-    this.collection.findByIdAndRemove(id, (err,data) =>{
-        if(err) {
-            console.log(err);
-            return err;
-        }
-        console.log(data)
-        return data;
-    });
+    return this.collection.findOneAndRemove({_id:id});
   }
 }
 

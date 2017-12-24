@@ -8,11 +8,11 @@ const UserValidator = require('./../../services/validators/user-validator');
 const auth = require('./../authorization/user_service');
 
 UsersRouter.get('/',auth._auth('optional'), Utility.parseQuery, (req, res) => {
-    // if (!req.query.key) {
-    //     return res.send(Utility.generateErrorMessage(
-    //       Utility.ErrorTypes.PERMISSION_DENIED)
-    //     );
-    // }
+    if (!req.query.key) {
+        return res.send(Utility.generateErrorMessage(
+          Utility.ErrorTypes.PERMISSION_DENIED)
+        );
+    }
     UsersService.getUsers().then(data => {
         return res.send(data);
     });
@@ -26,7 +26,6 @@ UsersRouter.post('/', auth._auth('optional'), (req, res) => {
         email: req.body.email,
         age: parseInt(req.body.age)
     }
-    console.log(user);
 
     UsersService.insertUsers(user).then(data => {
         return res.send(data);
@@ -35,7 +34,7 @@ UsersRouter.post('/', auth._auth('optional'), (req, res) => {
     });
 });
 
-UsersRouter.put('/:id',/* auth._auth('user'), */(req, res) => {
+UsersRouter.put('/:id', auth._auth('user'), (req, res) => {
 
     if(req.body.password){
         res.send("If you want to change password make a put request '/api/users/password' ");
@@ -57,16 +56,19 @@ UsersRouter.put('/:id',/* auth._auth('user'), */(req, res) => {
     UsersService.updateUsers(id, user).then(data => {
          return res.send(data);
      }).catch(err => {
-         console.log(err);
          res.send(err)
      });
 
 });
 
-UsersRouter.delete('/:id', /*auth._auth('admin'), */(req, res) => {
+UsersRouter.delete('/:id', auth._auth('admin'), (req, res) => {
     let id = req.params.id;
     UsersService.deleteUsers(id).then(data => {
-        return res.send("User is deleted");
+        if(!data) {
+            return res.send(Utility.generateErrorMessage(
+              Utility.ErrorTypes.INVALID_DATA));
+        }
+        return res.send(data);
     }).catch(err =>{
         res.send(err);
     });

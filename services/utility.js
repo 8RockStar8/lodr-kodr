@@ -6,6 +6,7 @@ const ErrorTypes = {
     PHOTOS_TYPE: 'photos_type_error',
     INVALID_AGE: 'invalid_age',
     AVATAR_EXIST: 'avatar_exist',
+    INVALID_DATA: 'invalid_data',
     INVALID_NAME: 'invalid_name',
     INVALID_TYPE: 'invalid_type',
     INVALID_EMAIL: 'invalid_email',
@@ -155,6 +156,9 @@ class Utility {
                 break;
             case ErrorTypes.INVALID_QUERY:
                 error_object.message = 'Invalid queri.';
+                break;
+            case ErrorTypes.INVALID_DATA:
+                error_object.message = 'Data does not exists.';
                 break;
         }
         return error_object;
