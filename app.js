@@ -7,6 +7,10 @@ const Utility = require('./services/utility');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
+app.use('/public', express.static('public'));
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
     extended: true

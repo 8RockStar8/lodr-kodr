@@ -12,7 +12,11 @@ class ApiV1 {
       app.use('/api/photos', PhotosApi);
 
       app.get('/', (req, res) => {
-        res.send("hello");
+        return res.render('home',{
+        	title: "Lodr-Kodr",
+        	homePageTitle: "Our title",
+        	tempText: "Some text",
+        });
       });
     }
 }
