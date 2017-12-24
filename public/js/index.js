@@ -106,18 +106,18 @@ jQuery(document).ready(function($) {
 	});
 
 
+	
+	$('#pagination-demo').twbsPagination({
+		totalPages: 16,
+		// visiblePages: 6,
+		next: 'Next',
+		prev: 'Prev',
+		onPageClick: function (event, page) {
 
-	// Search box responsive stuff
-
-	$('.search-box input').on('focus', function() {
-		if($(window).width() <= 1360) {
-			cols.hideMessage();
 		}
 	});
 
 });
-
-
 
 
 /*! nanoScrollerJS - v0.8.0 - 2014

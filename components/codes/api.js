@@ -5,10 +5,10 @@ const CodeService = require('./service');
 /*const Authorize = require('./private/middlewares');*/
 
 CodeRouter.get('/', /*Authorize._auth('user'),*/ (req, res) => {
-    if (!req.query.key) {
-        return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
-    }
-    let options = req.query;
+    // if (!req.query.key) {
+    //     return res.send(Utility.generateErrorMessage(Utility.ErrorTypes.CODE_PERMISSION_DENIED));
+    // }
+    let options = req.query || {};
     options.requester = req.user;
     CodeService.getCode(options).then(data => {
                   return res.send(data);

@@ -1,14 +1,17 @@
 const CodeDAO = require('./private/dao');
 const Utility = require('./../../services/utility');
 
+const AppConstants = require('./../../settings/constants');
+
+
 class CodeService {
-    getCode(query, options) {
+    getCode(query) {
+        query = query || {};
         return new Promise((resolve, reject) => {
-          options = options || {};
             CodeDAO.getData(query)
                    .populate('author',['name', 'username','role'])
-                   .skip(req.query.offset)
-                   .limit(req.query.limit)
+                   .skip(AppConstants.offset)
+                   .limit(AppConstants.limit)
                    .then(data =>{
                           resolve(data);
             }).catch(err => {
